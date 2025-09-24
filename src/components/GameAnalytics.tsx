@@ -285,72 +285,591 @@ const GameAnalytics = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="period" className="animate-fade-in">
+          <TabsContent value="period" className="animate-fade-in space-y-6">
+            {/* Period Selection */}
+            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
+              <div className="flex items-center space-x-4">
+                <Icon name="CalendarRange" size={20} className="text-amber-accent" />
+                <span className="text-gray-light">Период с:</span>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="bg-gray-dark/50 border-gray-dark hover:border-amber-accent hover:bg-gray-dark text-white"
+                    >
+                      <Icon name="Calendar" size={16} className="mr-2" />
+                      01 сентября 2024
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0 bg-gray-dark border-gray-dark/30">
+                    <Calendar mode="single" className="text-white" />
+                  </PopoverContent>
+                </Popover>
+              </div>
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-light">по:</span>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="bg-gray-dark/50 border-gray-dark hover:border-pink-accent hover:bg-gray-dark text-white"
+                    >
+                      <Icon name="Calendar" size={16} className="mr-2" />
+                      24 сентября 2024
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0 bg-gray-dark border-gray-dark/30">
+                    <Calendar mode="single" className="text-white" />
+                  </PopoverContent>
+                </Popover>
+              </div>
+            </div>
+
+            {/* Period Metrics Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+              <MetricCard
+                title="Средний DAU за период"
+                value={11340}
+                change={5.8}
+                icon="Users"
+              />
+              <MetricCard
+                title="Общий доход за период"
+                value={2150000}
+                change={18.2}
+                icon="DollarSign"
+                format="currency"
+              />
+              <MetricCard
+                title="Новые пользователи"
+                value={8945}
+                change={12.4}
+                icon="UserPlus"
+              />
+              <MetricCard
+                title="Неактивные пользователи"
+                value={15.6}
+                change={-2.1}
+                icon="UserX"
+                format="percentage"
+              />
+            </div>
+
+            {/* Session Metrics */}
             <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
               <CardHeader>
-                <CardTitle className="text-white">Метрики за период</CardTitle>
-                <CardDescription className="text-gray-light">
-                  Анализ данных за выбранный период времени
-                </CardDescription>
+                <CardTitle className="text-white flex items-center">
+                  <Icon name="Activity" size={20} className="mr-2 text-amber-accent" />
+                  Метрики сессий за период
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12 text-gray-light">
-                  <Icon name="Clock" size={48} className="mx-auto mb-4 text-amber-accent" />
-                  <p>Выберите период для анализа метрик</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-gray-dark/30 rounded-lg">
+                    <div className="text-2xl font-bold text-white mb-1">847,592</div>
+                    <div className="text-sm text-gray-light">Общее количество сессий</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-dark/30 rounded-lg">
+                    <div className="text-2xl font-bold text-white mb-1">12:34</div>
+                    <div className="text-sm text-gray-light">Средняя длительность</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-dark/30 rounded-lg">
+                    <div className="text-2xl font-bold text-white mb-1">2.8</div>
+                    <div className="text-sm text-gray-light">Сессий на пользователя</div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="comparison" className="animate-fade-in">
+          <TabsContent value="comparison" className="animate-fade-in space-y-6">
+            {/* Comparison Period Selection */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-amber-accent flex items-center">
+                    <Icon name="Calendar" size={18} className="mr-2" />
+                    Период A
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gray-light text-sm">С:</span>
+                    <Button variant="outline" className="flex-1 bg-gray-dark/50 border-gray-dark text-white">
+                      01 августа 2024
+                    </Button>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gray-light text-sm">По:</span>
+                    <Button variant="outline" className="flex-1 bg-gray-dark/50 border-gray-dark text-white">
+                      31 августа 2024
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-pink-accent flex items-center">
+                    <Icon name="Calendar" size={18} className="mr-2" />
+                    Период B
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gray-light text-sm">С:</span>
+                    <Button variant="outline" className="flex-1 bg-gray-dark/50 border-gray-dark text-white">
+                      01 сентября 2024
+                    </Button>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gray-light text-sm">По:</span>
+                    <Button variant="outline" className="flex-1 bg-gray-dark/50 border-gray-dark text-white">
+                      24 сентября 2024
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Comparison Charts */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <Icon name="BarChart3" size={20} className="mr-2 text-amber-accent" />
+                    DAU Сравнение
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-amber-accent rounded"></div>
+                        <span className="text-gray-light">Август</span>
+                      </div>
+                      <span className="text-white font-semibold">10,542</span>
+                    </div>
+                    <Progress value={60} className="h-3 bg-gray-dark" />
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-pink-accent rounded"></div>
+                        <span className="text-gray-light">Сентябрь</span>
+                      </div>
+                      <span className="text-white font-semibold">12,547</span>
+                    </div>
+                    <Progress value={72} className="h-3 bg-gray-dark" />
+
+                    <div className="pt-2 text-center">
+                      <span className="text-green-500 font-semibold">+19.0%</span>
+                      <span className="text-gray-light text-sm ml-2">рост</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <Icon name="DollarSign" size={20} className="mr-2 text-pink-accent" />
+                    Доход Сравнение
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-amber-accent rounded"></div>
+                        <span className="text-gray-light">Август</span>
+                      </div>
+                      <span className="text-white font-semibold">$74,820</span>
+                    </div>
+                    <Progress value={45} className="h-3 bg-gray-dark" />
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-pink-accent rounded"></div>
+                        <span className="text-gray-light">Сентябрь</span>
+                      </div>
+                      <span className="text-white font-semibold">$89,420</span>
+                    </div>
+                    <Progress value={54} className="h-3 bg-gray-dark" />
+
+                    <div className="pt-2 text-center">
+                      <span className="text-green-500 font-semibold">+19.5%</span>
+                      <span className="text-gray-light text-sm ml-2">рост</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Key Differences */}
             <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
               <CardHeader>
-                <CardTitle className="text-white">Сравнение метрик</CardTitle>
-                <CardDescription className="text-gray-light">
-                  Сравнительный анализ показателей
-                </CardDescription>
+                <CardTitle className="text-white flex items-center">
+                  <Icon name="TrendingUp" size={20} className="mr-2 text-amber-accent" />
+                  Ключевые различия
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12 text-gray-light">
-                  <Icon name="BarChart" size={48} className="mx-auto mb-4 text-pink-accent" />
-                  <p>Выберите периоды для сравнения</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-gray-dark/30 rounded-lg">
+                    <Icon name="Users" size={24} className="mx-auto mb-2 text-green-500" />
+                    <div className="text-lg font-bold text-green-500 mb-1">+2,005</div>
+                    <div className="text-xs text-gray-light">Больше активных пользователей</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-dark/30 rounded-lg">
+                    <Icon name="DollarSign" size={24} className="mx-auto mb-2 text-green-500" />
+                    <div className="text-lg font-bold text-green-500 mb-1">+$14,600</div>
+                    <div className="text-xs text-gray-light">Больше дохода</div>
+                  </div>
+                  <div className="text-center p-4 bg-gray-dark/30 rounded-lg">
+                    <Icon name="Percent" size={24} className="mx-auto mb-2 text-amber-accent" />
+                    <div className="text-lg font-bold text-amber-accent mb-1">+2.1%</div>
+                    <div className="text-xs text-gray-light">Лучше retention</div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="monetization" className="animate-fade-in">
+          <TabsContent value="monetization" className="animate-fade-in space-y-6">
+            {/* Revenue Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <MetricCard
+                title="Донат сегодня"
+                value={5420}
+                change={8.4}
+                icon="DollarSign"
+                format="currency"
+              />
+              <MetricCard
+                title="Донат за все время"
+                value={2847650}
+                icon="TrendingUp"
+                format="currency"
+              />
+              <MetricCard
+                title="ARPU"
+                value={5.68}
+                change={3.2}
+                icon="User"
+                format="currency"
+              />
+              <MetricCard
+                title="ARPPU"
+                value={24.50}
+                change={-1.8}
+                icon="CreditCard"
+                format="currency"
+              />
+            </div>
+
+            {/* Retention Rate Calculator */}
             <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
               <CardHeader>
-                <CardTitle className="text-white">Монетизация</CardTitle>
-                <CardDescription className="text-gray-light">
-                  Детальная аналитика доходов и платежей
-                </CardDescription>
+                <CardTitle className="text-white flex items-center">
+                  <Icon name="Calculator" size={20} className="mr-2 text-amber-accent" />
+                  Retention Rate за N дней
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12 text-gray-light">
-                  <Icon name="DollarSign" size={48} className="mx-auto mb-4 text-amber-accent" />
-                  <p>Анализ доходности и монетизации</p>
+                <div className="flex flex-col md:flex-row items-start md:items-end space-y-4 md:space-y-0 md:space-x-4">
+                  <div className="flex-1">
+                    <label className="text-gray-light text-sm mb-2 block">Количество дней:</label>
+                    <input 
+                      type="number" 
+                      defaultValue="7"
+                      className="w-full px-3 py-2 bg-gray-dark/50 border border-gray-dark rounded-lg text-white focus:border-amber-accent focus:outline-none"
+                      placeholder="Введите количество дней"
+                    />
+                  </div>
+                  <Button className="bg-amber-accent text-dark-navy hover:bg-amber-accent/90">
+                    <Icon name="Search" size={16} className="mr-2" />
+                    Рассчитать
+                  </Button>
+                </div>
+                <div className="mt-6 p-4 bg-gray-dark/30 rounded-lg">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-amber-accent mb-2">28.7%</div>
+                    <div className="text-gray-light">Retention Rate за 7 дней</div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Revenue Distribution */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <Icon name="PieChart" size={20} className="mr-2 text-pink-accent" />
+                    Распределение доходов
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-amber-accent rounded-full"></div>
+                        <span className="text-gray-light">Премиум подписка</span>
+                      </div>
+                      <span className="text-white font-semibold">45%</span>
+                    </div>
+                    <Progress value={45} className="h-2 bg-gray-dark" />
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-pink-accent rounded-full"></div>
+                        <span className="text-gray-light">Внутриигровые покупки</span>
+                      </div>
+                      <span className="text-white font-semibold">35%</span>
+                    </div>
+                    <Progress value={35} className="h-2 bg-gray-dark" />
+
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                        <span className="text-gray-light">Реклама</span>
+                      </div>
+                      <span className="text-white font-semibold">20%</span>
+                    </div>
+                    <Progress value={20} className="h-2 bg-gray-dark" />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <Icon name="Target" size={20} className="mr-2 text-amber-accent" />
+                    Топ покупок
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-3 bg-gray-dark/30 rounded-lg">
+                      <div>
+                        <div className="text-white font-medium">Золотой пакет</div>
+                        <div className="text-gray-light text-sm">$9.99</div>
+                      </div>
+                      <div className="text-amber-accent font-bold">1,247</div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center p-3 bg-gray-dark/30 rounded-lg">
+                      <div>
+                        <div className="text-white font-medium">Энергия x50</div>
+                        <div className="text-gray-light text-sm">$2.99</div>
+                      </div>
+                      <div className="text-pink-accent font-bold">892</div>
+                    </div>
+
+                    <div className="flex justify-between items-center p-3 bg-gray-dark/30 rounded-lg">
+                      <div>
+                        <div className="text-white font-medium">Премиум месяц</div>
+                        <div className="text-gray-light text-sm">$19.99</div>
+                      </div>
+                      <div className="text-green-500 font-bold">534</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
-          <TabsContent value="gaming" className="animate-fade-in">
+          <TabsContent value="gaming" className="animate-fade-in space-y-6">
+            {/* Quest Completion */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-white flex items-center text-lg">
+                    <Icon name="Target" size={18} className="mr-2 text-amber-accent" />
+                    Квест "Новичок"
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-light">Завершено:</span>
+                      <span className="text-white font-semibold">87.3%</span>
+                    </div>
+                    <Progress value={87.3} className="h-2 bg-gray-dark" />
+                    <div className="text-xs text-gray-light">3,482 из 3,987 игроков</div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-white flex items-center text-lg">
+                    <Icon name="Sword" size={18} className="mr-2 text-pink-accent" />
+                    Квест "Воин"
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-light">Завершено:</span>
+                      <span className="text-white font-semibold">64.8%</span>
+                    </div>
+                    <Progress value={64.8} className="h-2 bg-gray-dark" />
+                    <div className="text-xs text-gray-light">2,584 из 3,987 игроков</div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-white flex items-center text-lg">
+                    <Icon name="Crown" size={18} className="mr-2 text-yellow-500" />
+                    Квест "Мастер"
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-light">Завершено:</span>
+                      <span className="text-white font-semibold">23.1%</span>
+                    </div>
+                    <Progress value={23.1} className="h-2 bg-gray-dark" />
+                    <div className="text-xs text-gray-light">921 из 3,987 игроков</div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Custom Period Settings */}
             <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
               <CardHeader>
-                <CardTitle className="text-white">Игровые метрики</CardTitle>
-                <CardDescription className="text-gray-light">
-                  Специфические игровые показатели и достижения
-                </CardDescription>
+                <CardTitle className="text-white flex items-center">
+                  <Icon name="Settings" size={20} className="mr-2 text-amber-accent" />
+                  Настройка периодов анализа
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-center py-12 text-gray-light">
-                  <Icon name="Gamepad2" size={48} className="mx-auto mb-4 text-pink-accent" />
-                  <p>Статистика игрового процесса и достижений</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div>
+                    <label className="text-gray-light text-sm mb-2 block">Retention 1 день:</label>
+                    <input 
+                      type="number" 
+                      defaultValue="1"
+                      className="w-full px-3 py-2 bg-gray-dark/50 border border-gray-dark rounded-lg text-white focus:border-amber-accent focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-light text-sm mb-2 block">Retention 3 дня:</label>
+                    <input 
+                      type="number" 
+                      defaultValue="3"
+                      className="w-full px-3 py-2 bg-gray-dark/50 border border-gray-dark rounded-lg text-white focus:border-pink-accent focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-light text-sm mb-2 block">Retention 7 дней:</label>
+                    <input 
+                      type="number" 
+                      defaultValue="7"
+                      className="w-full px-3 py-2 bg-gray-dark/50 border border-gray-dark rounded-lg text-white focus:border-amber-accent focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-light text-sm mb-2 block">Retention 30 дней:</label>
+                    <input 
+                      type="number" 
+                      defaultValue="30"
+                      className="w-full px-3 py-2 bg-gray-dark/50 border border-gray-dark rounded-lg text-white focus:border-pink-accent focus:outline-none"
+                    />
+                  </div>
                 </div>
+                <Button className="mt-4 bg-gradient-gaming text-white">
+                  <Icon name="RefreshCw" size={16} className="mr-2" />
+                  Обновить метрики
+                </Button>
               </CardContent>
             </Card>
+
+            {/* Game Statistics */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <Icon name="Gift" size={20} className="mr-2 text-pink-accent" />
+                    Промокоды и тикеты
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between items-center p-3 bg-gray-dark/30 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <Icon name="Ticket" size={20} className="text-amber-accent" />
+                      <span className="text-white">Использовано промокодов</span>
+                    </div>
+                    <span className="text-amber-accent font-bold text-lg">1,247</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center p-3 bg-gray-dark/30 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <Icon name="MessageSquare" size={20} className="text-pink-accent" />
+                      <span className="text-white">Поддержка тикетов</span>
+                    </div>
+                    <span className="text-pink-accent font-bold text-lg">89</span>
+                  </div>
+
+                  <div className="flex justify-between items-center p-3 bg-gray-dark/30 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <Icon name="ShieldX" size={20} className="text-red-500" />
+                      <span className="text-white">Заблокировано аккаунтов</span>
+                    </div>
+                    <span className="text-red-500 font-bold text-lg">23</span>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-card backdrop-blur-sm border-gray-dark/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center">
+                    <Icon name="Trophy" size={20} className="mr-2 text-yellow-500" />
+                    Достижения игроков
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-light">Первая победа</span>
+                      <div className="flex items-center space-x-2">
+                        <Progress value={95.2} className="w-20 h-2 bg-gray-dark" />
+                        <span className="text-white font-semibold text-sm">95.2%</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-light">10 побед подряд</span>
+                      <div className="flex items-center space-x-2">
+                        <Progress value={67.8} className="w-20 h-2 bg-gray-dark" />
+                        <span className="text-white font-semibold text-sm">67.8%</span>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-light">Легендарный ранг</span>
+                      <div className="flex items-center space-x-2">
+                        <Progress value={12.4} className="w-20 h-2 bg-gray-dark" />
+                        <span className="text-white font-semibold text-sm">12.4%</span>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-light">Полная коллекция</span>
+                      <div className="flex items-center space-x-2">
+                        <Progress value={3.7} className="w-20 h-2 bg-gray-dark" />
+                        <span className="text-white font-semibold text-sm">3.7%</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
         </Tabs>
       </main>
